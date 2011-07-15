@@ -1,0 +1,12 @@
+[Bb]in/
+[Oo]bj/
+TestResults/
+localWorkingFolder/
+Log_/
+_ReSharper.*/
+
+*.suo
+*.user
+
+Thumbs.db
+.DS_Store
