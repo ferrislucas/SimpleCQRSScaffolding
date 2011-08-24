@@ -32,6 +32,12 @@ Add-ProjectItemViaTemplate ("Events\$Model" + "CreatedEvent") -Template SimpleCQ
 
 foreach ($member in $modelProjectType.Members)
 {
-    Write-Host "    Scaffolding property:" $member.Name
-    #Add-ClassMemberViaTemplate -CodeClass $modelProjectType -Template "SimpleCQRSAggregateRootPropertyTemplate" -Model @{ PropertyName = $member.Name; Fullname = $member.FullName } -TemplateFolders $TemplateFolders
+    Write-Host "    Scaffolding property:" $member.Type.AsFullName.ToString()
+    #Add-ClassMemberViaTemplate -CodeClass $modelProjectType -Template "SimpleCQRSAggregateRootPropertySetEventTemplate" -Model @{ PropertyName = $member.Name; Fullname = $member.FullName } -TemplateFolders $TemplateFolders
+
+    Add-ProjectItemViaTemplate ("Events\$Model" + $member.Name + "SetEvent") -Template SimpleCQRSAggregateRootPropertySetEventTemplate `
+        -Model @{ Namespace = $namespace; Name = $modelProjectType.Name; PropertyName = $member.Name.ToString(); PropertyType = $member.Type.AsFullName.ToString() } `
+	    -SuccessMessage "complete {0}" `
+	    -TemplateFolders $TemplateFolders -Project $Project -CodeLanguage $CodeLanguage -Force:$Force
+
 }

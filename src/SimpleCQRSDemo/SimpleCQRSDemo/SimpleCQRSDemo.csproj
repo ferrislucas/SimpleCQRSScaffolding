@@ -65,11 +65,11 @@
     <Compile Include="Denormalizers\AccountReportDenormalizer.cs" />
     <Compile Include="Domain\Account.cs" />
     <Compile Include="Domain\ModelClass.cs" />
-    <Compile Include="Events\.cs" />
     <Compile Include="Events\AccountCreatedEvent.cs" />
     <Compile Include="Events\AccountNameSetEvent.cs" />
-    <Compile Include="Events\ModelClass.cs" />
     <Compile Include="Events\ModelClassCreatedEvent.cs" />
+    <Compile Include="Events\ModelClassNameSetEvent.cs" />
+    <Compile Include="Events\ModelClassSomeDateSetEvent.cs" />
     <Compile Include="FakeDb\FakeAccountTableRow.cs" />
     <Compile Include="FakeDb\FakeAccountTable.cs" />
     <Compile Include="ModelClass.cs" />
@@ -80,6 +80,7 @@
     <Compile Include="SampleRunTime.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CodeTemplates\Scaffolders\SimpleCQRSAggregateRoot\SimpleCQRSAggregateRootPropertySetEventTemplate.cs.t4" />
     <None Include="CodeTemplates\Scaffolders\SimpleCQRSAggregateRoot\SimpleCQRSAggregateRootCreatedEventTemplate.cs.t4" />
     <None Include="CodeTemplates\Scaffolders\SimpleCQRSAggregateRoot\SimpleCQRSAggregateRoot.ps1" />
     <None Include="CodeTemplates\Scaffolders\SimpleCQRSAggregateRoot\SimpleCQRSAggregateRootTemplate.cs.t4" />
