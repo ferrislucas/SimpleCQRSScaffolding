@@ -1,0 +1,28 @@
+<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System;
+
+namespace <#= Model.Namespace #>
+{
+    public class <#= Model.Name #> : AggregateRoot
+    {
+        public <#= Model.Name #>(Guid id)
+        {
+            Apply(new <#= Model.Name #>CreatedEvent { AggregateRootId = id });
+        }
+
+        public void SetName(string firstName, string lastName)
+        {
+            Apply(new <#= Model.Name #>NameSetEvent{ FirstName = firstName, LastName = lastName});
+        }
+
+        public void On<#= Model.Name #>Created(<#= Model.Name #>CreatedEvent evt)
+        {
+            Id = evt.AggregateRootId;
+        }
+    } 
+}
