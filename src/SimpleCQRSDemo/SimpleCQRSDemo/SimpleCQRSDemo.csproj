@@ -64,12 +64,8 @@
     <Compile Include="Commands\CreateAccountCommand.cs" />
     <Compile Include="Denormalizers\AccountReportDenormalizer.cs" />
     <Compile Include="Domain\Account.cs" />
-    <Compile Include="Domain\ModelClass.cs" />
     <Compile Include="Events\AccountCreatedEvent.cs" />
     <Compile Include="Events\AccountNameSetEvent.cs" />
-    <Compile Include="Events\ModelClassCreatedEvent.cs" />
-    <Compile Include="Events\ModelClassNameSetEvent.cs" />
-    <Compile Include="Events\ModelClassSomeDateSetEvent.cs" />
     <Compile Include="FakeDb\FakeAccountTableRow.cs" />
     <Compile Include="FakeDb\FakeAccountTable.cs" />
     <Compile Include="ModelClass.cs" />
