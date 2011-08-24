@@ -1,0 +1,9 @@
+<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+using System;
+using SimpleCqrs.Eventing;
+
+namespace <#= Model.Namespace #>.Events
+{
+    public class <#= Model.Name #>CreatedEvent : DomainEvent { }
+}
