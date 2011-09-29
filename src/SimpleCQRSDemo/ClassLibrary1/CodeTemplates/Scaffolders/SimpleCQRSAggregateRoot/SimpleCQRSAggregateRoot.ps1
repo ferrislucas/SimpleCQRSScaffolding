@@ -21,13 +21,13 @@ $namespace = (Get-Project $Project).Properties.Item("DefaultNamespace").Value
 # Create Aggregate Root
 Add-ProjectItemViaTemplate "Domain\$Model" -Template SimpleCQRSAggregateRootTemplate `
     -Model @{ Namespace = $namespace; Name = $modelProjectType.Name } `
-	-SuccessMessage "complete {0}" `
+	-SuccessMessage "{0} created succcessfully" `
 	-TemplateFolders $TemplateFolders -Project $Project -CodeLanguage $CodeLanguage -Force:$Force
 
 # Create AggregateRootCreatedEvent
 Add-ProjectItemViaTemplate ("Events\$Model" + "CreatedEvent") -Template SimpleCQRSAggregateRootCreatedEventTemplate `
     -Model @{ Namespace = $namespace; Name = $modelProjectType.Name } `
-	-SuccessMessage "complete {0}" `
+	-SuccessMessage "{0} created succcessfully" `
 	-TemplateFolders $TemplateFolders -Project $Project -CodeLanguage $CodeLanguage -Force:$Force
 
 # Create Aggregate Root property events
