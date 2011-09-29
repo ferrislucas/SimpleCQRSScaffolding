@@ -16,10 +16,10 @@ if (!$Model)
 $modelProjectType = Get-ProjectType $Model
 $namespace = (Get-Project $Project).Properties.Item("DefaultNamespace").Value
 
-Write-Host "Scaffolding AggregateRoot with $modelProjectType.Members.Count properties..."
+#Write-Host "Scaffolding AggregateRoot with $modelProjectType.Members.Count properties..."
 
 # Create Aggregate Root
-Add-ProjectItemViaTemplate "AggregateRoots\$Model" -Template SimpleCQRSAggregateRootTemplate `
+Add-ProjectItemViaTemplate "Domain\$Model" -Template SimpleCQRSAggregateRootTemplate `
     -Model @{ Namespace = $namespace; Name = $modelProjectType.Name } `
 	-SuccessMessage "complete {0}" `
 	-TemplateFolders $TemplateFolders -Project $Project -CodeLanguage $CodeLanguage -Force:$Force
@@ -33,12 +33,12 @@ Add-ProjectItemViaTemplate ("Events\$Model" + "CreatedEvent") -Template SimpleCQ
 # Create Aggregate Root propery events
 foreach ($member in $modelProjectType.Members)
 {
-    Write-Host "    Scaffolding property:" $member.Type.AsFullName.ToString()
+    #Write-Host "    Scaffolding property:" $member.Type.AsFullName.ToString()
     #Add-ClassMemberViaTemplate -CodeClass $modelProjectType -Template "SimpleCQRSAggregateRootPropertySetEventTemplate" -Model @{ PropertyName = $member.Name; Fullname = $member.FullName } -TemplateFolders $TemplateFolders
 
     Add-ProjectItemViaTemplate ("Events\$Model" + $member.Name + "SetEvent") -Template SimpleCQRSAggregateRootPropertySetEventTemplate `
         -Model @{ Namespace = $namespace; Name = $modelProjectType.Name; PropertyName = $member.Name.ToString(); PropertyType = $member.Type.AsFullName.ToString() } `
-	    -SuccessMessage "complete {0}" `
+	    -SuccessMessage "{0} created successfully" `
 	    -TemplateFolders $TemplateFolders -Project $Project -CodeLanguage $CodeLanguage -Force:$Force
 
 }

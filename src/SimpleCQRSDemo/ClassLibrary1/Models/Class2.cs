@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace ClassLibrary1.Models
 {
-    public class Class1
+    public class Class2
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
-        public Class2[] ClassTwos { get; set; }
     }
 }

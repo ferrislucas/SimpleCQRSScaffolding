@@ -8,7 +8,7 @@ using System;
 using SimpleCqrs.Domain;
 using <#= Model.Namespace #>.Events;
 
-namespace <#= Model.Namespace #>.AggregateRoots
+namespace <#= Model.Namespace #>.Domain
 {
     public class <#= Model.Name #> : AggregateRoot
     {
