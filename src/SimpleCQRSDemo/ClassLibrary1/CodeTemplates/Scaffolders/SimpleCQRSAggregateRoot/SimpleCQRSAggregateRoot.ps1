@@ -30,7 +30,7 @@ Add-ProjectItemViaTemplate ("Events\$Model" + "CreatedEvent") -Template SimpleCQ
 	-SuccessMessage "complete {0}" `
 	-TemplateFolders $TemplateFolders -Project $Project -CodeLanguage $CodeLanguage -Force:$Force
 
-# Create Aggregate Root propery events
+# Create Aggregate Root property events
 foreach ($member in $modelProjectType.Members)
 {
     #Write-Host "    Scaffolding property:" $member.Type.AsFullName.ToString()
