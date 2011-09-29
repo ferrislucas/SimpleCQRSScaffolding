@@ -19,17 +19,18 @@ $namespace = (Get-Project $Project).Properties.Item("DefaultNamespace").Value
 Write-Host "Scaffolding AggregateRoot with $modelProjectType.Members.Count properties..."
 
 # Create Aggregate Root
-Add-ProjectItemViaTemplate "Domain\$Model" -Template SimpleCQRSAggregateRootTemplate `
+Add-ProjectItemViaTemplate "AggregateRoots\$Model" -Template SimpleCQRSAggregateRootTemplate `
     -Model @{ Namespace = $namespace; Name = $modelProjectType.Name } `
 	-SuccessMessage "complete {0}" `
 	-TemplateFolders $TemplateFolders -Project $Project -CodeLanguage $CodeLanguage -Force:$Force
 
-# Create Aggregate Root Created Event
+# Create AggregateRootCreatedEvent
 Add-ProjectItemViaTemplate ("Events\$Model" + "CreatedEvent") -Template SimpleCQRSAggregateRootCreatedEventTemplate `
     -Model @{ Namespace = $namespace; Name = $modelProjectType.Name } `
 	-SuccessMessage "complete {0}" `
 	-TemplateFolders $TemplateFolders -Project $Project -CodeLanguage $CodeLanguage -Force:$Force
 
+# Create Aggregate Root propery events
 foreach ($member in $modelProjectType.Members)
 {
     Write-Host "    Scaffolding property:" $member.Type.AsFullName.ToString()
